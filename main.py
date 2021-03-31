@@ -183,30 +183,30 @@ else:
 # # Calulate which echo is better          # 
 # ########################################## 
 
-print(int_lechoes_rarity1)
-print(int_lechoes_rarity2)
-print(int_lechoes_exp1)
-print(int_lechoes_exp2)
+# print(int_lechoes_rarity1)
+# print(int_lechoes_rarity2)
+# print(int_lechoes_exp1)
+# print(int_lechoes_exp2)
 
-int_lechoes_rarity2 = str(int_lechoes_rarity2)
-int_lechoes_exp2 = str(int_lechoes_exp2)
-int_rechoes_rarity2 = str(int_rechoes_rarity2)
-int_rechoes_exp2 = str(int_rechoes_exp2)
+# int_lechoes_rarity2 = str(int_lechoes_rarity2)
+# int_lechoes_exp2 = str(int_lechoes_exp2)
+# int_rechoes_rarity2 = str(int_rechoes_rarity2)
+# int_rechoes_exp2 = str(int_rechoes_exp2)
 
-int_lechoes_rarity = int(int_lechoes_rarity1+int_lechoes_rarity2)
-int_lechoes_exp = int(int_lechoes_exp1+int_lechoes_exp2)
+int_lechoes_rarity = int(int_lechoes_rarity1+str(int_lechoes_rarity2))
+int_lechoes_exp = int(int_lechoes_exp1+str(int_lechoes_exp2))
 
-int_rechoes_rarity = int(int_rechoes_rarity1+int_rechoes_rarity2)
-int_rechoes_exp = int(int_rechoes_exp1+int_rechoes_exp2)
+int_rechoes_rarity = int(int_rechoes_rarity1+str(int_rechoes_rarity2))
+int_rechoes_exp = int(int_rechoes_exp1+str(int_rechoes_exp2))
 
-print(int(lechoes_rarity1[0:2]))
-print(lechoes_exp1[0:2])
-print("left echoes: "+ str(int_lechoes_echoes))
-print("left rarity: "+str(int_lechoes_rarity))
-print("left exp: "+str(int_lechoes_exp))
-print("right echoes: "+str(int_rechoes_echoes))
-print("right rarity: "+str(int_rechoes_rarity))
-print("right exp: "+str(int_rechoes_exp))
+# print(int(lechoes_rarity1[0:2]))
+# print(lechoes_exp1[0:2])
+# print("left echoes: "+ str(int_lechoes_echoes))
+# print("left rarity: "+str(int_lechoes_rarity))
+# print("left exp: "+str(int_lechoes_exp))
+# print("right echoes: "+str(int_rechoes_echoes))
+# print("right rarity: "+str(int_rechoes_rarity))
+# print("right exp: "+str(int_rechoes_exp))
 
 lechoes_total = int_lechoes_exp + int_lechoes_rarity
 lechoes_final = int_lechoes_echoes * lechoes_total
