@@ -36,15 +36,6 @@ lechoes_exp1 = lechoes_lines[4] #Can be blank
 lechoes_exp2 = lechoes_lines[5] #Can be blank
 lechoes_exp3 = lechoes_lines[6]
 
-#Uncomment for debugging
-# print("line0 " + lechoes_lines[0])
-# print("line1 " + lechoes_lines[1])
-# print("line2 " + lechoes_lines[2])
-# print("line3 " + lechoes_lines[3])
-# print("line4 " + lechoes_lines[4])
-# print("line5 " + lechoes_lines[5])
-# print("line6 " + lechoes_lines[6])
-
 #Check for blank line
 try:
     if (lechoes_lines[0] == '\n'):
@@ -60,32 +51,45 @@ try:
 except:
     int_rechoes_echoes = 1
 
-#Find blank line before rarity and exp
+#Find blank line before rarity
 if (lechoes_lines[2] == '\n'):
+    int_lechoes_rarity1 = lechoes_rarity1[0:1]
     try:
-        int_lechoes_rarity = (int(lechoes_rarity1[0:2]))
-        int_lechoes_exp = (int(lechoes_exp1[0:2])) #+1 line number on exp as always comes after rarity
+        int_lechoes_rarity2 = int(lechoes_rarity1[1:2])
     except:
-        int_lechoes_rarity = (int(lechoes_rarity1[0:1]))
-        int_lechoes_exp = (int(lechoes_exp1[0:1]))
+        int_lechoes_rarity2 = ''
 elif (lechoes_lines[3] == '\n'):
+    int_lechoes_rarity1 = lechoes_rarity2[0:1]
     try:
-        int_lechoes_rarity = (int(lechoes_rarity2[0:2]))
-        int_lechoes_exp = (int(lechoes_exp2[0:2]))
+        int_lechoes_rarity2 = int(lechoes_rarity2[1:2])
     except:
-        int_lechoes_rarity = (int(lechoes_rarity2[0:1]))
-        int_lechoes_exp = (int(lechoes_exp2[0:1]))
+        int_lechoes_rarity2 = ''
 else:
+    int_lechoes_rarity1 = lechoes_rarity3[0:1]
     try:
-        int_lechoes_rarity = (int(lechoes_rarity3[0:2]))
-        int_lechoes_exp = (int(lechoes_exp2[0:2]))
+        int_lechoes_rarity2 = int(lechoes_rarity3[1:2])
     except:
-        int_lechoes_rarity = (int(lechoes_rarity3[0:1]))
-        int_lechoes_exp = (int(lechoes_exp2[0:1]))
+        int_lechoes_rarity2 = ''
 
-print("int_lechoes_echoes: " + str(int_lechoes_echoes))
-print("int_lechoes_rarity: " + str(int_lechoes_rarity))
-print("int_lechoes_exp: " + str(int_lechoes_exp))
+#Find blank line before rarity to calc which line to start exp on
+if (lechoes_lines[2] == '\n'):
+    int_lechoes_exp1 = lechoes_exp1[0:1]
+    try:
+        int_lechoes_exp2 = int(lechoes_exp1[1:2])
+    except:
+        int_lechoes_exp2 = ''
+elif (lechoes_lines[3] == '\n'):
+    int_lechoes_exp1 = lechoes_exp2[0:1]
+    try:
+        int_lechoes_exp2 = int(lechoes_exp2[1:2])
+    except:
+        int_lechoes_exp2 = ''
+else:
+    int_lechoes_exp1 = lechoes_exp3[0:1]
+    try:
+        int_lechoes_exp2 = int(lechoes_exp3[1:2])
+    except:
+        int_lechoes_exp2 = ''
 
 ####RIGHT ECHOE####
 
@@ -93,82 +97,116 @@ print("int_lechoes_exp: " + str(int_lechoes_exp))
 image = pyscreenshot.grab(bbox=(1605, 859, 2360, 1121))
 image.save("rechoe.jpg")
 
+#Convert left side echo image to text 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe'
 rechoes_file = open('rechoe.txt', encoding='utf-8', mode='w')
 rechoes_file.write(pytesseract.image_to_string(r'rechoe.jpg'))
+rechoes_file.close()
 
 rechoes_file = open("rechoe.txt", "a")
 rechoes_file.write("\n\n") #Add lines to end of file to avoid out of range errors
 
+#Convert text file lines to list 
 rechoes_lines = []
 with open ('rechoe.txt', 'rt') as rechoes_file:
     for rechoes_line in rechoes_file:
         rechoes_lines.append(rechoes_line)
 rechoes_file.close()
 
-rechoes_echoes1 = rechoes_lines[0]
+rechoes_echoes1 = rechoes_lines[0] #Can be blank if mods are 2 lines
 rechoes_echoes2 = rechoes_lines[1]
 
-rechoes_rarity1 = rechoes_lines[3]
-rechoes_rarity2 = rechoes_lines[4]
+rechoes_rarity1 = rechoes_lines[3] #Can be blank
+rechoes_rarity2 = rechoes_lines[4] #Can be blank
 rechoes_rarity3 = rechoes_lines[5]
 
-rechoes_exp1 = rechoes_lines[4]
-rechoes_exp2 = rechoes_lines[5]
+rechoes_exp1 = rechoes_lines[4] #Can be blank
+rechoes_exp2 = rechoes_lines[5] #Can be blank
 rechoes_exp3 = rechoes_lines[6]
 
-print("line0 " + rechoes_lines[0])
-print("line1 " + rechoes_lines[1])
-print("line2 " + rechoes_lines[2])
-print("line3 " + rechoes_lines[3])
-print("line4 " + rechoes_lines[4])
-print("line5 " + rechoes_lines[5])
-print("line6 " + rechoes_lines[6])
-
+#Check for blank line
 try:
     if (rechoes_lines[0] == '\n'):
         try:
-            int_rechoes_echoes = (int(rechoes_echoes2[13:15]))
+            int_rechoes_echoes = (int(rechoes_echoes2[13:15])) #Try to get both echo digits
         except:
-            int_rechoes_echoes = (int(rechoes_echoes2[13]))
+            int_rechoes_echoes = (int(rechoes_echoes2[13])) #Get single digit echo
     else:
         try:
-            int_rechoes_echoes = (int(rechoes_echoes1[13:15]))
+            int_rechoes_echoes = (int(rechoes_echoes1[13:15])) 
         except:
             int_rechoes_echoes = (int(rechoes_echoes1[13]))
 except:
     int_rechoes_echoes = 1
 
-#Find blank line before rarity and exp
+#Find blank line before rarity
 if (rechoes_lines[2] == '\n'):
+    int_rechoes_rarity1 = rechoes_rarity1[0:1]
     try:
-        int_rechoes_rarity = (int(rechoes_rarity1[0:2]))
-        int_rechoes_exp = (int(rechoes_exp1[0:2]))
+        int_rechoes_rarity2 = int(rechoes_rarity1[1:2])
     except:
-        int_rechoes_rarity = (int(rechoes_rarity1[0:1]))
-        int_rechoes_exp = (int(rechoes_exp1[0:1]))
+        int_rechoes_rarity2 = ''
 elif (rechoes_lines[3] == '\n'):
+    int_rechoes_rarity1 = rechoes_rarity2[0:1]
     try:
-        int_rechoes_rarity = (int(rechoes_rarity2[0:2]))
-        int_rechoes_exp = (int(rechoes_exp2[0:2]))
+        int_rechoes_rarity2 = int(rechoes_rarity2[1:2])
     except:
-        int_rechoes_rarity = (int(rechoes_rarity2[0:1]))
-        int_rechoes_exp = (int(rechoes_exp2[0:1]))
+        int_rechoes_rarity2 = ''
 else:
+    int_rechoes_rarity1 = rechoes_rarity3[0:1]
     try:
-        int_rechoes_rarity = (int(rechoes_rarity3[0:2]))
-        int_rechoes_exp = (int(rechoes_exp2[0:2]))
+        int_rechoes_rarity2 = int(rechoes_rarity3[1:2])
     except:
-        int_rechoes_rarity = (int(rechoes_rarity3[0:1]))
-        int_rechoes_exp = (int(rechoes_exp2[0:1]))
+        int_rechoes_rarity2 = ''
 
-print("int_rechoes_echoes: " + str(int_rechoes_echoes))
-print("int_rechoes_rarity: " + str(int_rechoes_rarity))
-print("int_rechoes_exp: " + str(int_rechoes_exp))
+#Find blank line before rarity to calc which line to start exp on
+if (rechoes_lines[2] == '\n'):
+    int_rechoes_exp1 = rechoes_exp1[0:1]
+    try:
+        int_rechoes_exp2 = int(rechoes_exp1[1:2])
+    except:
+        int_rechoes_exp2 = ''
+elif (rechoes_lines[3] == '\n'):
+    int_rechoes_exp1 = rechoes_exp2[0:1]
+    try:
+        int_rechoes_exp2 = int(rechoes_exp2[1:2])
+    except:
+        int_rechoes_exp2 = ''
+else:
+    int_rechoes_exp1 = rechoes_exp3[0:1]
+    try:
+        int_rechoes_exp2 = int(rechoes_exp3[1:2])
+    except:
+        int_rechoes_exp2 = ''
 
 # ##########################################
 # # Calulate which echo is better          # 
 # ########################################## 
+
+print(int_lechoes_rarity1)
+print(int_lechoes_rarity2)
+print(int_lechoes_exp1)
+print(int_lechoes_exp2)
+
+int_lechoes_rarity2 = str(int_lechoes_rarity2)
+int_lechoes_exp2 = str(int_lechoes_exp2)
+int_rechoes_rarity2 = str(int_rechoes_rarity2)
+int_rechoes_exp2 = str(int_rechoes_exp2)
+
+int_lechoes_rarity = int(int_lechoes_rarity1+int_lechoes_rarity2)
+int_lechoes_exp = int(int_lechoes_exp1+int_lechoes_exp2)
+
+int_rechoes_rarity = int(int_rechoes_rarity1+int_rechoes_rarity2)
+int_rechoes_exp = int(int_rechoes_exp1+int_rechoes_exp2)
+
+print(int(lechoes_rarity1[0:2]))
+print(lechoes_exp1[0:2])
+print("left echoes: "+ str(int_lechoes_echoes))
+print("left rarity: "+str(int_lechoes_rarity))
+print("left exp: "+str(int_lechoes_exp))
+print("right echoes: "+str(int_rechoes_echoes))
+print("right rarity: "+str(int_rechoes_rarity))
+print("right exp: "+str(int_rechoes_exp))
 
 lechoes_total = int_lechoes_exp + int_lechoes_rarity
 lechoes_final = int_lechoes_echoes * lechoes_total
