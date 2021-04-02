@@ -19,21 +19,21 @@ echo_choice = input()
 timer = 0
 
 while (echo_choice == 1 or 2 or 3):
-    print("Debug: Start trying main code")
+    #print("Debug: Start trying main code")
     try:
         ################
         ###LEFT ECHOE###
         ################    
-        print("Debug: Start leftEchoMain")
-        print("Debug: start leftEchoMain function")
+        #print("Debug: Start leftEchoMain")
+        #print("Debug: start leftEchoMain function")
         lechoe_width1 = round(10.7 * GetSystemMetrics(0) / 100) #get res and calc % req to hit position for pyscreenshot
-        print("Debug: finished width1")
+        #print("Debug: finished width1")
         lechoe_height1 = round(59.65 * GetSystemMetrics(1) / 100) #"
         lechoe_width2 = round(36.33 * GetSystemMetrics(0) / 100) #"
         lechoe_height2 = round(77.85 * GetSystemMetrics(1) / 100) #"
 
 
-        print("Debug: Capture left side echo")
+        #print("Debug: Capture left side echo")
         image = pyscreenshot.grab(bbox=(lechoe_width1, lechoe_height1, lechoe_width2, lechoe_height2)) #w, h, w, h
         image.save("lechoe.jpg")
 
@@ -119,18 +119,18 @@ while (echo_choice == 1 or 2 or 3):
             except:
                 int_lechoes_exp2 = ''
         
-        print("Debug: finished leftEchoMain")
+        #print("Debug: finished leftEchoMain")
         #################
         ###RIGHT ECHOE###
         #################
-        print("Debug: start rightEchoMain")
-        print("Debug: start rightEchoMain function")
+        #print("Debug: start rightEchoMain")
+        #print("Debug: start rightEchoMain function")
         rechoe_width1 = round(62.7 * GetSystemMetrics(0) / 100)
         rechoe_height1 = round(59.65 * GetSystemMetrics(1) / 100)
         rechoe_width2 = round(92.19 * GetSystemMetrics(0) / 100)
         rechoe_height2 = round(77.85 * GetSystemMetrics(1) / 100)
 
-        print("Debug: Capture right side echo")
+        #print("Debug: Capture right side echo")
         image = pyscreenshot.grab(bbox=(rechoe_width1, rechoe_height1, rechoe_width2, rechoe_height2))
         image.save("rechoe.jpg")
 
