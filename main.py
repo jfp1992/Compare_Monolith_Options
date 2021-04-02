@@ -1,12 +1,20 @@
-import pytesseract
-import pyscreenshot
+import pytesseract #image to text ocr
+import pyscreenshot #get screenshot and save as file
+from win32api import GetSystemMetrics # some windows feature stuff - using it to get res
 #import time
 #import cv2
 
-####LEFT ECHOE####
+################
+###LEFT ECHOE###
+################
+
+lechoe_width1 = round(10.7 * GetSystemMetrics(0) / 100) #get res and calc % req to hit position for pyscreenshot
+lechoe_height1 = round(59.65 * GetSystemMetrics(1) / 100) #"
+lechoe_width2 = round(36.33 * GetSystemMetrics(0) / 100) #"
+lechoe_height2 = round(77.85 * GetSystemMetrics(1) / 100) #"
 
 #Capture left side echo
-image = pyscreenshot.grab(bbox=(274, 859, 930, 1121))
+image = pyscreenshot.grab(bbox=(lechoe_width1, lechoe_height1, lechoe_width2, lechoe_height2)) #w, h, w, h
 image.save("lechoe.jpg")
 
 #Convert left side echo image to text 
@@ -49,7 +57,7 @@ try:
         except:
             int_lechoes_echoes = (int(lechoes_echoes1[13]))
 except:
-    int_rechoes_echoes = 1
+    int_lechoes_echoes = 1 #if the above fails it means that there is no echoe multiplier
 
 #Find blank line before rarity
 if (lechoes_lines[2] == '\n'):
@@ -91,10 +99,17 @@ else:
     except:
         int_lechoes_exp2 = ''
 
-####RIGHT ECHOE####
+#################
+###RIGHT ECHOE###
+#################
+
+rechoe_width1 = round(62.7 * GetSystemMetrics(0) / 100)
+rechoe_height1 = round(59.65 * GetSystemMetrics(1) / 100)
+rechoe_width2 = round(92.19 * GetSystemMetrics(0) / 100)
+rechoe_height2 = round(77.85 * GetSystemMetrics(1) / 100)
 
 #Get left echoe numbers
-image = pyscreenshot.grab(bbox=(1605, 859, 2360, 1121))
+image = pyscreenshot.grab(bbox=(rechoe_width1, rechoe_height1, rechoe_width2, rechoe_height2))
 image.save("rechoe.jpg")
 
 #Convert left side echo image to text 
@@ -183,30 +198,11 @@ else:
 # # Calulate which echo is better          # 
 # ########################################## 
 
-# print(int_lechoes_rarity1)
-# print(int_lechoes_rarity2)
-# print(int_lechoes_exp1)
-# print(int_lechoes_exp2)
-
-# int_lechoes_rarity2 = str(int_lechoes_rarity2)
-# int_lechoes_exp2 = str(int_lechoes_exp2)
-# int_rechoes_rarity2 = str(int_rechoes_rarity2)
-# int_rechoes_exp2 = str(int_rechoes_exp2)
-
 int_lechoes_rarity = int(int_lechoes_rarity1+str(int_lechoes_rarity2))
 int_lechoes_exp = int(int_lechoes_exp1+str(int_lechoes_exp2))
 
 int_rechoes_rarity = int(int_rechoes_rarity1+str(int_rechoes_rarity2))
 int_rechoes_exp = int(int_rechoes_exp1+str(int_rechoes_exp2))
-
-# print(int(lechoes_rarity1[0:2]))
-# print(lechoes_exp1[0:2])
-# print("left echoes: "+ str(int_lechoes_echoes))
-# print("left rarity: "+str(int_lechoes_rarity))
-# print("left exp: "+str(int_lechoes_exp))
-# print("right echoes: "+str(int_rechoes_echoes))
-# print("right rarity: "+str(int_rechoes_rarity))
-# print("right exp: "+str(int_rechoes_exp))
 
 lechoes_total = int_lechoes_exp + int_lechoes_rarity
 lechoes_final = int_lechoes_echoes * lechoes_total
@@ -240,3 +236,7 @@ elif (rechoe_rarity_final > lechoe_rarity_final):
     print("Right echo is better for item drops")
 else:
     print("Both echos are the same for item drops, choose any")
+
+#######################
+### Track modifiers ###
+#######################
